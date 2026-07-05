@@ -1,13 +1,22 @@
 {
-  "name": "e-commers",
+  "name": "carrycart",
   "version": "1.0.0",
-  "description": "",
+  "description": "A full-stack e-commerce web application built with Node.js, Express.js, MongoDB, and EJS.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js",
+    "dev": "nodemon app.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "nodejs",
+    "express",
+    "mongodb",
+    "mongoose",
+    "ejs",
+    "ecommerce",
+    "jwt"
+  ],
+  "author": "Anmol Rajpoot",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
@@ -17,7 +26,7 @@
     "ejs": "^6.0.1",
     "express": "^5.2.1",
     "jsonwebtoken": "^9.0.3",
-    "mongoose": "^9.7.3",
+    "mongoose": "^8.18.0",
     "multer": "^2.2.0"
   },
   "devDependencies": {
