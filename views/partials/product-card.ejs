@@ -1,0 +1,155 @@
+<div
+    class="group bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+>
+
+    <!-- ================= IMAGE SECTION ================= -->
+
+    <div
+        class="relative h-72 flex items-center justify-center overflow-hidden"
+        style="background:<%= product.panelcolor %>;"
+    >
+
+        <!-- Discount Badge -->
+
+        <% if(product.discount > 0){ %>
+
+            <span
+                class="absolute top-4 left-4 bg-red-500 text-white text-xs font-semibold px-3 py-1 rounded-full"
+            >
+                <%= product.discount %>% OFF
+            </span>
+
+        <% } %>
+
+        <!-- Wishlist -->
+
+        <button
+            type="button"
+            class="absolute top-4 right-4 w-10 h-10 rounded-full bg-white shadow flex items-center justify-center hover:bg-red-500 hover:text-white transition"
+        >
+
+            <i class="ri-heart-3-line text-xl"></i>
+
+        </button>
+
+        <!-- Product Image -->
+
+        <img
+            src="data:image/jpeg;base64,<%= product.image.toString('base64') %>"
+            alt="<%= product.name %>"
+            class="h-56 object-contain transition duration-500 group-hover:scale-110"
+        >
+
+    </div>
+
+    <!-- ================= PRODUCT DETAILS ================= -->
+
+    <div
+        class="p-5"
+        style="
+            background:<%= product.bgcolor %>;
+            color:<%= product.textcolor %>;
+        "
+    >
+
+        <!-- Product Name -->
+
+        <h2 class="text-lg font-semibold truncate">
+
+            <%= product.name %>
+
+        </h2>
+
+        <!-- Rating -->
+
+        <div class="flex items-center gap-1 mt-3">
+
+            <i class="ri-star-fill text-yellow-400"></i>
+            <i class="ri-star-fill text-yellow-400"></i>
+            <i class="ri-star-fill text-yellow-400"></i>
+            <i class="ri-star-fill text-yellow-400"></i>
+            <i class="ri-star-half-fill text-yellow-400"></i>
+
+            <span class="text-sm text-gray-500 ml-2">
+
+                (4.8)
+
+            </span>
+
+        </div>
+
+        <!-- Price -->
+
+        <div class="flex justify-between items-center mt-5">
+
+            <div>
+
+                <h3 class="text-2xl font-bold">
+
+                    ₹ <%= product.price %>
+
+                </h3>
+
+                <% if(product.discount > 0){ %>
+
+                    <p class="text-green-600 text-sm">
+
+                        Save <%= product.discount %>%
+
+                    </p>
+
+                <% } %>
+
+            </div>
+
+            <span
+                class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-semibold"
+            >
+
+                In Stock
+
+            </span>
+
+        </div>
+
+        <!-- ================= ACTION BUTTONS ================= -->
+
+        <div class="mt-6 flex items-center gap-3">
+
+            <!-- Quick View -->
+
+            <button
+                type="button"
+                class="w-12 h-12 rounded-full border border-gray-300 hover:bg-gray-100 transition flex items-center justify-center"
+            >
+
+                <i class="ri-eye-line text-lg"></i>
+
+            </button>
+
+            <!-- Add To Cart -->
+
+            <form
+                action="/users/addtocart/<%= product._id %>"
+                method="POST"
+                class="flex-1"
+            >
+
+                <button
+                    type="submit"
+                    class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-semibold transition flex items-center justify-center gap-2"
+                >
+
+                    <i class="ri-shopping-cart-2-line"></i>
+
+                    Add To Cart
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

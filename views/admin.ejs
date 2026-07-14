@@ -1,0 +1,353 @@
+<%- include("partials/header", { title: "CarryCart | Admin Dashboard" }) %>
+
+<%- include("partials/navbar", { user: user }) %>
+
+<div class="max-w-7xl mx-auto px-6 py-10">
+
+    <!-- ================= Header ================= -->
+
+    <div class="flex flex-col md:flex-row justify-between items-center mb-10">
+
+        <div>
+
+            <h1 class="text-4xl font-bold text-gray-800">
+                Admin Dashboard
+            </h1>
+
+            <p class="text-gray-500 mt-2">
+                Manage your products and inventory.
+            </p>
+
+        </div>
+
+        <a
+            href="/shop"
+            class="mt-4 md:mt-0 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl transition"
+        >
+            <i class="ri-store-2-line mr-2"></i>
+            Visit Shop
+        </a>
+
+    </div>
+
+    <!-- ================= Flash Message ================= -->
+
+    <% if(typeof success !== "undefined" && success){ %>
+
+        <div class="mb-6 bg-green-100 text-green-700 px-5 py-4 rounded-xl">
+
+            <%= success %>
+
+        </div>
+
+    <% } %>
+
+    <% if(typeof error !== "undefined" && error){ %>
+
+        <div class="mb-6 bg-red-100 text-red-700 px-5 py-4 rounded-xl">
+
+            <%= error %>
+
+        </div>
+
+    <% } %>
+
+    <!-- ================= Dashboard Cards ================= -->
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+
+        <div class="bg-white rounded-2xl shadow-md p-6">
+
+            <div class="flex justify-between items-center">
+
+                <div>
+
+                    <p class="text-gray-500">
+
+                        Products
+
+                    </p>
+
+                    <h2 class="text-4xl font-bold mt-2">
+
+                        --
+
+                    </h2>
+
+                </div>
+
+                <div class="w-14 h-14 rounded-xl bg-blue-100 flex items-center justify-center">
+
+                    <i class="ri-shopping-bag-3-line text-3xl text-blue-600"></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-md p-6">
+
+            <div class="flex justify-between items-center">
+
+                <div>
+
+                    <p class="text-gray-500">
+
+                        Orders
+
+                    </p>
+
+                    <h2 class="text-4xl font-bold mt-2">
+
+                        --
+
+                    </h2>
+
+                </div>
+
+                <div class="w-14 h-14 rounded-xl bg-green-100 flex items-center justify-center">
+
+                    <i class="ri-box-3-line text-3xl text-green-600"></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-md p-6">
+
+            <div class="flex justify-between items-center">
+
+                <div>
+
+                    <p class="text-gray-500">
+
+                        Customers
+
+                    </p>
+
+                    <h2 class="text-4xl font-bold mt-2">
+
+                        --
+
+                    </h2>
+
+                </div>
+
+                <div class="w-14 h-14 rounded-xl bg-purple-100 flex items-center justify-center">
+
+                    <i class="ri-group-line text-3xl text-purple-600"></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ================= Product Form ================= -->
+
+    <div class="bg-white rounded-3xl shadow-lg p-8">
+
+        <div class="flex items-center gap-3 mb-8">
+
+            <i class="ri-add-circle-line text-3xl text-blue-600"></i>
+
+            <h2 class="text-3xl font-bold">
+
+                Create New Product
+
+            </h2>
+
+        </div>
+
+        <form
+            action="/products/create"
+            method="POST"
+            enctype="multipart/form-data"
+            class="space-y-6"
+        >
+
+            <!-- Product Image -->
+
+            <div>
+
+                <label class="block font-semibold mb-2">
+
+                    Product Image
+
+                </label>
+
+                <input
+                    type="file"
+                    name="image"
+                    accept="image/*"
+                    required
+                    class="w-full border rounded-xl p-3"
+                >
+
+                <p class="text-sm text-gray-500 mt-2">
+
+                    JPG, PNG or WEBP images are recommended.
+
+                </p>
+
+            </div>
+
+            <!-- Name & Price -->
+
+            <div class="grid md:grid-cols-2 gap-6">
+
+                <div>
+
+                    <label class="block font-semibold mb-2">
+
+                        Product Name
+
+                    </label>
+
+                    <input
+                        type="text"
+                        name="name"
+                        required
+                        placeholder="Nike Air Max"
+                        class="w-full border rounded-xl p-3 focus:ring-2 focus:ring-blue-500 outline-none"
+                    >
+
+                </div>
+
+                <div>
+
+                    <label class="block font-semibold mb-2">
+
+                        Price
+
+                    </label>
+
+                    <input
+                        type="number"
+                        name="price"
+                        required
+                        min="0"
+                        placeholder="2999"
+                        class="w-full border rounded-xl p-3 focus:ring-2 focus:ring-blue-500 outline-none"
+                    >
+
+                </div>
+
+            </div>
+
+            <!-- Discount -->
+
+            <div>
+
+                <label class="block font-semibold mb-2">
+
+                    Discount (%)
+
+                </label>
+
+                <input
+                    type="number"
+                    name="discount"
+                    value="0"
+                    min="0"
+                    max="100"
+                    class="w-full border rounded-xl p-3 focus:ring-2 focus:ring-blue-500 outline-none"
+                >
+
+            </div>
+
+            <!-- Colors -->
+
+            <div class="grid md:grid-cols-3 gap-6">
+
+                <div>
+
+                    <label class="block font-semibold mb-2">
+
+                        Background Color
+
+                    </label>
+
+                    <input
+                        type="text"
+                        name="bgcolor"
+                        value="#ffffff"
+                        class="w-full border rounded-xl p-3"
+                    >
+
+                </div>
+
+                <div>
+
+                    <label class="block font-semibold mb-2">
+
+                        Panel Color
+
+                    </label>
+
+                    <input
+                        type="text"
+                        name="panelcolor"
+                        value="#f3f4f6"
+                        class="w-full border rounded-xl p-3"
+                    >
+
+                </div>
+
+                <div>
+
+                    <label class="block font-semibold mb-2">
+
+                        Text Color
+
+                    </label>
+
+                    <input
+                        type="text"
+                        name="textcolor"
+                        value="#111827"
+                        class="w-full border rounded-xl p-3"
+                    >
+
+                </div>
+
+            </div>
+
+            <!-- Buttons -->
+
+            <div class="flex gap-4 pt-2">
+
+                <button
+                    type="submit"
+                    class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-semibold transition"
+                >
+
+                    <i class="ri-upload-cloud-2-line mr-2"></i>
+
+                    Create Product
+
+                </button>
+
+                <button
+                    type="reset"
+                    class="border border-gray-300 hover:bg-gray-100 px-8 py-4 rounded-xl transition"
+                >
+
+                    Reset
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<%- include("partials/footer") %>

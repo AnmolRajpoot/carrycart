@@ -1,41 +1,31 @@
+
+
+
 const mongoose = require("mongoose");
 
-const ownerSchema = new mongoose.Schema(
-    {
-        fullname: {
-            type: String,
-            required: true,
-            trim: true
-        },
+// fullname 
+// email
+// password
+// products
+// picture
+// gstin
 
-        email: {
-            type: String,
-            required: true,
-            unique: true,
-            lowercase: true,
-            trim: true
-        },
-
-        password: {
-            type: String,
-            required: true
-        },
-
-        products: [
-            {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: "Product"
-            }
-        ],
-
-        picture: {
-            type: String,
-            default: ""
-        }
+const ownerSchema = mongoose.Schema({
+    fullname:String,
+    email:String,
+    password:String,
+    products:{
+        type:Array,
+        default:[]
     },
-    {
-        timestamps: true
-    }
-);
+    picture:String,
+    gstin:String
+});
 
-module.exports = mongoose.model("Owner", ownerSchema);
+module.exports=mongoose.model("owner",ownerSchema);
+
+
+
+
+
+

@@ -1,0 +1,112 @@
+<%- include("partials/header", { title: "CarryCart | Shop" }) %>
+
+<%- include("partials/navbar", { user: user }) %>
+
+<div class="max-w-7xl mx-auto px-6 py-10">
+
+    <div class="flex flex-col lg:flex-row gap-8">
+
+        <!-- ================= Sidebar ================= -->
+
+        <%- include("partials/sidebar") %>
+
+        <!-- ================= Products Section ================= -->
+
+        <main class="flex-1">
+
+            <!-- Heading -->
+
+            <div class="flex flex-col md:flex-row justify-between items-center mb-10">
+
+                <div>
+
+                    <h1 class="text-4xl font-bold text-gray-800">
+
+                        Explore Products
+
+                    </h1>
+
+                    <p class="text-gray-500 mt-2">
+
+                        Discover premium products curated for you.
+
+                    </p>
+
+                </div>
+
+                <!-- Product Count -->
+
+                <div
+                    class="mt-5 md:mt-0 bg-white shadow px-5 py-3 rounded-xl"
+                >
+
+                    <span class="font-semibold">
+
+                        <%= products.length %>
+
+                    </span>
+
+                    Products Available
+
+                </div>
+
+            </div>
+
+            <!-- Product Grid -->
+
+            <% if(products.length === 0){ %>
+
+                <div
+                    class="bg-white rounded-3xl shadow p-20 text-center"
+                >
+
+                    <i
+                        class="ri-shopping-bag-line text-7xl text-gray-300"
+                    ></i>
+
+                    <h2
+                        class="text-3xl font-bold mt-6"
+                    >
+
+                        No Products Found
+
+                    </h2>
+
+                    <p
+                        class="text-gray-500 mt-3"
+                    >
+
+                        Products created by the admin will appear here.
+
+                    </p>
+
+                </div>
+
+            <% } else { %>
+
+                <div
+                    class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-8"
+                >
+
+                    <% products.forEach(product => { %>
+
+                        <%- include(
+                            "partials/product-card",
+                            {
+                                product: product
+                            }
+                        ) %>
+
+                    <% }) %>
+
+                </div>
+
+            <% } %>
+
+        </main>
+
+    </div>
+
+</div>
+
+<%- include("partials/footer") %>
